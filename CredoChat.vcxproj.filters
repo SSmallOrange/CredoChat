@@ -41,65 +41,68 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Distribution Files">
+      <UniqueIdentifier>{B83CAF91-C7BF-462F-B76C-EA11631F866C}</UniqueIdentifier>
+      <Extensions>*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Distribution Files">
+      <UniqueIdentifier>{B83CAF91-C7BF-462F-B76C-EA11631F866C}</UniqueIdentifier>
+      <Extensions>*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Distribution Files">
-      <UniqueIdentifier>{B83CAF91-C7BF-462F-B76C-EA11631F866C}</UniqueIdentifier>
-      <Extensions>*</Extensions>
-      <ParseFiles>false</ParseFiles>
+    <Filter Include="Source Files\Base">
+      <UniqueIdentifier>{df24e923-e915-4f0a-a84f-a870b2029879}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Distribution Files">
-      <UniqueIdentifier>{B83CAF91-C7BF-462F-B76C-EA11631F866C}</UniqueIdentifier>
-      <Extensions>*</Extensions>
-      <ParseFiles>false</ParseFiles>
+    <Filter Include="Header Files\Base">
+      <UniqueIdentifier>{dada521a-47e2-4604-819e-a66dc8d79b40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Base\HttpServer">
+      <UniqueIdentifier>{14c5656f-cd6d-42b3-9ea9-de510a440afe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Base\HttpServer">
+      <UniqueIdentifier>{150166aa-3392-4050-918b-a5da604d34c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Login">
+      <UniqueIdentifier>{c540db69-213e-4bab-9168-0a026313be78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Login">
+      <UniqueIdentifier>{1c0fb68c-d881-40f7-9040-ae4ed1e237dc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Base\global.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Base\HttpServer\httpmanager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Base\Localcfg\localcfg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Login\logindialog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="mainwindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Base\HttpServer\httpmanager.cpp">
+      <Filter>Source Files\Base\HttpServer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Base\global.cpp">
+      <Filter>Source Files\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Login\logindialog.cpp">
+      <Filter>Source Files\Login</Filter>
+    </ClCompile>
     <ClCompile Include="src\Login\registerdialog.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Login</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Base\global.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <QtMoc Include="src\Base\HttpServer\httpmanager.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <ClInclude Include="src\Base\Localcfg\localcfg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <QtMoc Include="src\Login\logindialog.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="mainwindow.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="src\Login\registerdialog.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <ClInclude Include="src\Base\singleton.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Base\global.h">
+      <Filter>Header Files\Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -130,8 +133,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\Base\Localcfg\Localcfg.xml">
+    <QtMoc Include="src\Base\HttpServer\httpmanager.h">
+      <Filter>Header Files\Base\HttpServer</Filter>
+    </QtMoc>
+    <QtMoc Include="src\Login\logindialog.h">
+      <Filter>Header Files\Login</Filter>
+    </QtMoc>
+    <QtMoc Include="src\Login\registerdialog.h">
+      <Filter>Header Files\Login</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Config\Localcfg.xml">
       <Filter>Distribution Files</Filter>
-    </None>
+    </Xml>
   </ItemGroup>
 </Project>

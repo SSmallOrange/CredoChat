@@ -197,7 +197,6 @@
   <ItemGroup>
     <ClCompile Include="src\Base\global.cpp" />
     <ClCompile Include="src\Base\HttpServer\httpmanager.cpp" />
-    <ClCompile Include="src\Base\Localcfg\localcfg.cpp" />
     <ClCompile Include="src\Login\logindialog.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainwindow.cpp" />
@@ -206,7 +205,6 @@
   <ItemGroup>
     <ClInclude Include="src\Base\global.h" />
     <QtMoc Include="src\Base\HttpServer\httpmanager.h" />
-    <ClInclude Include="src\Base\Localcfg\localcfg.h" />
     <QtMoc Include="src\Login\logindialog.h" />
     <QtMoc Include="mainwindow.h" />
     <QtMoc Include="src\Login\registerdialog.h" />
@@ -236,7 +234,7 @@
     <None Include="style\stylesheet.qss" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\Base\Localcfg\Localcfg.xml" />
+    <Xml Include="Config\Localcfg.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <Import Project="$(QtMsBuild)\qt.targets" Condition="Exists('$(QtMsBuild)\qt.targets')" />
