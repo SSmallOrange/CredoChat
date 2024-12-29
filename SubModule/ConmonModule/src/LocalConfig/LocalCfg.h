@@ -6,5 +6,8 @@ class COMMONMODULE_API LocalCfg
 {
 public:
 		LocalCfg();
+
+private:
+	
 };
 
