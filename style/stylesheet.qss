@@ -1,0 +1,15 @@
+QDialog#LoginDialog, QDialog#RegisterDialog {
+    background-color:white;
+}
+
+QPushButton#userLabel, QPushButton#passwordLabel {
+    color: black;
+}
+
+QLabel#errorTipLabel[state='normal'] {
+    color:green;
+}
+
+QLabel#errorTipLabel[state='error'] {
+    color:red;
+}
