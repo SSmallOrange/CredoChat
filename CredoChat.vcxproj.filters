@@ -78,9 +78,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mainwindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Base\HttpServer\httpmanager.cpp">
       <Filter>Source Files\Base\HttpServer</Filter>
     </ClCompile>
@@ -93,11 +90,11 @@
     <ClCompile Include="src\Login\registerdialog.cpp">
       <Filter>Source Files\Login</Filter>
     </ClCompile>
+    <ClCompile Include="src\mainwindow.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="mainwindow.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <ClInclude Include="src\Base\singleton.h">
       <Filter>Header Files\Base</Filter>
     </ClInclude>
@@ -114,10 +111,10 @@
     <QtUic Include="src\Login\logindialog.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtUic Include="mainwindow.ui">
+    <QtUic Include="src\Login\registerdialog.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtUic Include="src\Login\registerdialog.ui">
+    <QtUic Include="src\mainwindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
@@ -141,6 +138,9 @@
     </QtMoc>
     <QtMoc Include="src\Login\registerdialog.h">
       <Filter>Header Files\Login</Filter>
+    </QtMoc>
+    <QtMoc Include="src\mainwindow.h">
+      <Filter>Generated Files</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
