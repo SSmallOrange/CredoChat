@@ -136,7 +136,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;src;generate\moc;generate\ui;C:\VulkanSDK\1.0.51.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;src;generate\moc;generate\ui;C:\VulkanSDK\1.0.51.0\include;$(ProjectDir)SubModule\CommonModule\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -std:c++17 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>generate\objects\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -193,6 +193,10 @@
       <QtUicDir>generate\ui</QtUicDir>
       <QtUicFileName>ui_%(Filename).h</QtUicFileName>
     </QtUic>
+    <PostBuildEvent>
+      <Command>xcopy /s /y "$(ProjectDir)Config\*.xml" "$(ProjectDir)bin"
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Base\global.cpp" />

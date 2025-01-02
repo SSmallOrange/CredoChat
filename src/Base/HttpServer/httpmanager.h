@@ -12,7 +12,7 @@
 
 #include <QObject>
 
-#include "Base/singleton.h"
+#include "Utils/singleton.h"
 
 class QUrl;
 class QString;

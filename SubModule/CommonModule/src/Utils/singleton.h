@@ -1,3 +1,4 @@
+#pragma once
 /******************************************************************************
  *
  * @file       singleton.h
@@ -21,10 +22,10 @@ class Singleton {
 public:
     static std::shared_ptr<T> GetInstance() {
         static std::once_flag sFlag;
-        std::call_once(sFlag, [&](){
-            // å› ä¸ºè¿™é‡Œçš„æ„é€ å‡½æ•°æ˜¯protectedçš„,make_sharedæ— æ³•è®¿é—®å—ä¿æŠ¤çš„æ„é€ å‡½æ•°,è€Œnewå¯ä»¥åœ¨ç±»çš„å†…éƒ¨ç›´æ¥è°ƒç”¨
+        std::call_once(sFlag, [&]() {
+            // ÒòÎªÕâÀïµÄ¹¹Ôìº¯ÊıÊÇprotectedµÄ,make_sharedÎŞ·¨·ÃÎÊÊÜ±£»¤µÄ¹¹Ôìº¯Êı,¶ønew¿ÉÒÔÔÚÀàµÄÄÚ²¿Ö±½Óµ÷ÓÃ
             _instance = std::shared_ptr<T>(new T);
-        });
+            });
         return _instance;
     }
 
@@ -45,7 +46,7 @@ private:
     static ptr _instance;
 };
 
-// é™æ€æˆå‘˜åˆå§‹åŒ–æ—¶éœ€è¦æŒ‡å®šæ¨¡æ¿å‚æ•° T
+// ¾²Ì¬³ÉÔ±³õÊ¼»¯Ê±ĞèÒªÖ¸¶¨Ä£°å²ÎÊı T
 template <typename T>
 typename Singleton<T>::ptr Singleton<T>::_instance = nullptr;
 
