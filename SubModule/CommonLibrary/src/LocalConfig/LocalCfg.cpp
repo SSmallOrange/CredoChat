@@ -2,10 +2,12 @@
 #include "tinyxml2.h"
 
 #include <regex>
+#include <filesystem>
 
 namespace XML = tinyxml2;
 
 namespace CommonModule {
+
 	LocalCfg::LocalCfg() {
 		XML::XMLDocument doc;
 	}
@@ -36,25 +38,45 @@ namespace CommonModule {
 		return false;
 	}
 
-	bool LocalCfg::OpenXMLDoc(std::string strFileName)
+	bool LocalCfg::OpenXMLDoc(std::string strFilePath)
 	{
-		if (_xmlDocs.find(strFileName) != _xmlDocs.end()) {
+		if (!strFilePath.empty()) {
+			std::string fileName = std::filesystem::path(strFilePath).filename().string();
+			if (_xmlDocs.find(fileName) != _xmlDocs.end()) {
+				return true;
+			}
+			XMLDocPtr doc = std::make_shared<XML::XMLDocument>();
+			XML::XMLError eResult = doc->LoadFile(strFilePath.c_str());
+			if (eResult != XML::XML_SUCCESS) {
+				return false;
+			}
+			_xmlDocs[fileName] = doc;
 			return true;
 		}
-
-		XMLDocPtr doc = std::make_shared<XML::XMLDocument>();
-		XML::XMLError eResult = doc->LoadFile(strFileName.c_str());
-		if (eResult != XML::XML_SUCCESS) {
-			return false;
-		}
-		_xmlDocs[strFileName] = doc;
-		return true;
+		return false;
 	}
 
 	template<typename T>
 	T LocalCfg::ReadConfigValue(std::string strType, std::string strMenu, std::string strFileName) {
 		std::any res = std::move(ReadConfigValue(strType, strMenu, strFileName));
 		return std::any_cast<T>(res);
+	}
+	template<>
+	std::string LocalCfg::ReadConfigValue(std::string strType, std::string strMenu, std::string strFileName) {
+		std::any res = std::move(ReadConfigValueAny(strType, strMenu, strFileName));
+		return std::any_cast<std::string>(res);
+	}
+
+	template<>
+	int LocalCfg::ReadConfigValue(std::string strType, std::string strMenu, std::string strFileName) {
+		std::any res = std::move(ReadConfigValueAny(strType, strMenu, strFileName));
+		return std::any_cast<int>(res);
+	}
+
+	template<>
+	double LocalCfg::ReadConfigValue(std::string strType, std::string strMenu, std::string strFileName) {
+		std::any res = std::move(ReadConfigValueAny(strType, strMenu, strFileName));
+		return std::any_cast<double>(res);
 	}
 
 	std::any LocalCfg::ReadConfigValueAny(std::string strType, std::string strMenu, std::string strFileName)
@@ -84,7 +106,7 @@ namespace CommonModule {
 		if (value == nullptr) {
 			return std::any{};  // 没有找到文本值
 		}
-		
+
 		if (isInteger(value)) {
 			return std::any(atoi(value));
 		}

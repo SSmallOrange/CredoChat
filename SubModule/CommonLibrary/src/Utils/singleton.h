@@ -1,16 +1,4 @@
 #pragma once
-/******************************************************************************
- *
- * @file       singleton.h
- * @brief      Singleton Class
- *
- * @author     Orange
- * @date       2024/09/28
- * @history
- *****************************************************************************/
-
-#ifndef SINGLETON_H
-#define SINGLETON_H
 
 #include <mutex>
 #include <memory>
@@ -50,4 +38,3 @@ private:
 template <typename T>
 typename Singleton<T>::ptr Singleton<T>::_instance = nullptr;
 
-#endif // SINGLETON_H

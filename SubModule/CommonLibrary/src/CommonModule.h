@@ -5,7 +5,7 @@
 #ifdef _MSC_VER 
 
 // 如果定义了 COMMONMODULE_EXPORTS，则表示编译 DLL
-#ifdef COMMONMODULE_EXPORTS
+#ifdef COMMONLIBRARY_EXPORTS
 #define COMMONMODULE_API __declspec(dllexport)
 #else
 // 如果没有定义 COMMONMODULE_EXPORTS，则表示使用 DLL

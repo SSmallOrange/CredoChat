@@ -13,6 +13,12 @@ namespace tinyxml2 {
 }
 
 namespace CommonModule {
+	//class COMMONMODULE_API testClass {
+	//public:
+	//	testClass(std::string s) {
+	//		std::cout << "|==========================>" << s << "\n";
+	//	}
+	//};
 	class COMMONMODULE_API LocalCfg : public Singleton<LocalCfg> {
 		typedef std::shared_ptr<tinyxml2::XMLDocument> XMLDocPtr;
 	public:
@@ -23,7 +29,7 @@ namespace CommonModule {
 		LocalCfg();
 
 	public:
-		bool OpenXMLDoc(std::string strFileName);
+		bool OpenXMLDoc(std::string strFilePath);
 
 	public:
 		// Support: Int Double String Bool
@@ -38,5 +44,12 @@ namespace CommonModule {
 	private:
 		std::unordered_map<std::string, XMLDocPtr> _xmlDocs;
 	};
+
+	// ÊµÀý»¯Ä£°å
+	extern template COMMONMODULE_API std::string LocalCfg::ReadConfigValue<std::string>(std::string, std::string, std::string);
+	extern template COMMONMODULE_API int LocalCfg::ReadConfigValue<int>(std::string, std::string, std::string);
+	extern template COMMONMODULE_API double LocalCfg::ReadConfigValue<double>(std::string, std::string, std::string);
+	extern template COMMONMODULE_API bool LocalCfg::ReadConfigValue<bool>(std::string, std::string, std::string);
+
 }
 
