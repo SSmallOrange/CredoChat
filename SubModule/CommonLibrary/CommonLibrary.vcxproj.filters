@@ -13,33 +13,69 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="头文件\LocalConfig">
+      <UniqueIdentifier>{36f093a7-6417-4a53-abb8-62f5b7bf7b71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Utils">
+      <UniqueIdentifier>{141cf2d7-f3ec-4977-ba61-4c8df2fffd1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\LocalConfig">
+      <UniqueIdentifier>{6c6d205f-db23-4d18-ad36-016e532532c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Utils">
+      <UniqueIdentifier>{31455877-9847-4389-be0c-64af7059501d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Log">
+      <UniqueIdentifier>{f3566105-7462-43b9-81d1-4be5bbe65a6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Log">
+      <UniqueIdentifier>{00d315c5-72ee-4dbe-ae3d-c0602cc51685}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\CommonModule.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\Utils\singleton.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Utils\util.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="src\LocalConfig\LocalCfg.h">
+      <Filter>头文件\LocalConfig</Filter>
     </ClInclude>
     <ClInclude Include="src\LocalConfig\tinyxml2.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\LocalConfig</Filter>
     </ClInclude>
-    <ClInclude Include="src\LocalConfig\LocalCfg.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="src\Utils\util.h">
+      <Filter>头文件\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utils\singleton.h">
+      <Filter>头文件\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Log\Log.h">
+      <Filter>头文件\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Log\LogDefine.h">
+      <Filter>头文件\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utils\NoCopyable.h">
+      <Filter>头文件\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utils\Mutex.h">
+      <Filter>头文件\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LocalConfig\XMLManager.h">
+      <Filter>头文件\LocalConfig</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\LocalConfig\tinyxml2.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="src\LocalConfig\LocalCfg.cpp">
+      <Filter>源文件\LocalConfig</Filter>
     </ClCompile>
     <ClCompile Include="src\Utils\util.cpp">
-      <Filter>源文件</Filter>
+      <Filter>源文件\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="src\LocalConfig\LocalCfg.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="src\LocalConfig\tinyxml2.cpp">
+      <Filter>源文件\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Log\Log.cpp">
+      <Filter>源文件\Log</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

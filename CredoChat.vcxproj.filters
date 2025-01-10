@@ -73,6 +73,9 @@
     <Filter Include="Source Files\Login">
       <UniqueIdentifier>{1c0fb68c-d881-40f7-9040-ae4ed1e237dc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{f8e42a89-ea96-4fdf-ad16-5960043239df}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -92,6 +95,9 @@
     </ClCompile>
     <ClCompile Include="src\mainwindow.cpp">
       <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test\Test_Config.cpp">
+      <Filter>Test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -194,8 +194,8 @@
       <QtUicFileName>ui_%(Filename).h</QtUicFileName>
     </QtUic>
     <PostBuildEvent>
-      <Command>xcopy /s /y "$(ProjectDir)Config\*.xml" "$(ProjectDir)bin"
-xcopy /s /y "$(ProjectDir)SubModule\CommonModule\lib\*.dll" "$(ProjectDir)bin"</Command>
+      <Command>xcopy /s /y "$(ProjectDir)SubModule\CommonModule\lib\*.dll" "$(ProjectDir)bin"
+xcopy /s /y "$(ProjectDir)Config\*.xml" "$(ProjectDir)bin"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -205,6 +205,7 @@ xcopy /s /y "$(ProjectDir)SubModule\CommonModule\lib\*.dll" "$(ProjectDir)bin"</
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\Login\registerdialog.cpp" />
     <ClCompile Include="src\mainwindow.cpp" />
+    <ClCompile Include="test\Test_Config.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Base\global.h" />

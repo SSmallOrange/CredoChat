@@ -64,19 +64,28 @@ namespace CommonModule {
 	template<>
 	std::string LocalCfg::ReadConfigValue(std::string strType, std::string strMenu, std::string strFileName) {
 		std::any res = std::move(ReadConfigValueAny(strType, strMenu, strFileName));
-		return std::any_cast<std::string>(res);
+		if (res.has_value()) {
+			return std::any_cast<std::string>(res);
+		}
+		return "";
 	}
 
 	template<>
 	int LocalCfg::ReadConfigValue(std::string strType, std::string strMenu, std::string strFileName) {
 		std::any res = std::move(ReadConfigValueAny(strType, strMenu, strFileName));
-		return std::any_cast<int>(res);
+		if (res.has_value()) {
+			return std::any_cast<int>(res);
+		}
+		return -1048576;
 	}
 
 	template<>
 	double LocalCfg::ReadConfigValue(std::string strType, std::string strMenu, std::string strFileName) {
 		std::any res = std::move(ReadConfigValueAny(strType, strMenu, strFileName));
-		return std::any_cast<double>(res);
+		if (res.has_value()) {
+			return std::any_cast<double>(res);
+		}
+		return -1048576;
 	}
 
 	std::any LocalCfg::ReadConfigValueAny(std::string strType, std::string strMenu, std::string strFileName)
@@ -92,17 +101,19 @@ namespace CommonModule {
 			return std::any{};  // 没有找到根节点
 		}
 
+		const char* temp = root->Name();
+
 		XML::XMLElement* menuElement = root->FirstChildElement(strMenu.c_str());
 		if (menuElement == nullptr) {
 			return std::any{};  // 没有找到类型节点
 		}
 
-		XML::XMLElement* typeElement = menuElement->FirstChildElement(strMenu.c_str());
+		XML::XMLElement* typeElement = menuElement->FirstChildElement(strType.c_str());
 		if (typeElement == nullptr) {
 			return std::any{};  // 没有找到菜单节点
 		}
 
-		const char* value = menuElement->GetText();
+		const char* value = typeElement->GetText();
 		if (value == nullptr) {
 			return std::any{};  // 没有找到文本值
 		}

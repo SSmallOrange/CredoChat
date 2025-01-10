@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LocalConfig>
+	<ClientInfo>
+		<IP>127.0.0.1</IP>
+		<Port>8080</Port>
+	</ClientInfo>
+</LocalConfig>

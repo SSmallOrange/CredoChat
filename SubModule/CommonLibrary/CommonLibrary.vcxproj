@@ -22,12 +22,18 @@
     <ClInclude Include="src\CommonModule.h" />
     <ClInclude Include="src\LocalConfig\LocalCfg.h" />
     <ClInclude Include="src\LocalConfig\tinyxml2.h" />
+    <ClInclude Include="src\LocalConfig\XMLManager.h" />
+    <ClInclude Include="src\Log\Log.h" />
+    <ClInclude Include="src\Log\LogDefine.h" />
+    <ClInclude Include="src\Utils\Mutex.h" />
+    <ClInclude Include="src\Utils\NoCopyable.h" />
     <ClInclude Include="src\Utils\singleton.h" />
     <ClInclude Include="src\Utils\util.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\LocalConfig\LocalCfg.cpp" />
     <ClCompile Include="src\LocalConfig\tinyxml2.cpp" />
+    <ClCompile Include="src\Log\Log.cpp" />
     <ClCompile Include="src\Utils\util.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
