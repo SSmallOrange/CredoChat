@@ -63,6 +63,9 @@
     <ClInclude Include="src\LocalConfig\XMLManager.h">
       <Filter>头文件\LocalConfig</Filter>
     </ClInclude>
+    <ClInclude Include="src\Log\LogManager.h">
+      <Filter>头文件\Log</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\LocalConfig\LocalCfg.cpp">
@@ -75,6 +78,12 @@
       <Filter>源文件\Utils</Filter>
     </ClCompile>
     <ClCompile Include="src\Log\Log.cpp">
+      <Filter>源文件\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LocalConfig\XMLManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Log\LogManager.cpp">
       <Filter>源文件\Log</Filter>
     </ClCompile>
   </ItemGroup>

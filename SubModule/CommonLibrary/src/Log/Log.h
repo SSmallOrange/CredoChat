@@ -71,7 +71,7 @@ namespace CommonModule {
 	class LogFormatter {
 	public:
 		typedef std::shared_ptr<LogFormatter> ptr;
-		LogFormatter(const std::string& pattern);
+		LogFormatter(const std::string& pattern) { _pattern = pattern; };
 
 		// %t   %threadID %m%n
 		std::string format(const std::shared_ptr<Logger>& logger, LogLevel::Level level, LogEvent::ptr event);
@@ -101,18 +101,21 @@ namespace CommonModule {
 		typedef CASLock MutexType;
 		LogAppender() = default;
 		virtual ~LogAppender() = default;
+
 		virtual void log(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event) = 0;
-		virtual void toXMLString() = 0;
-		virtual std::string toYamlString() = 0;
+		virtual std::string toXMLString() = 0;
+		virtual std::string getAppenderName() = 0;
+
 		void setFormatter(LogFormatter::ptr val);
-		LogFormatter::ptr getFormatter() const;
+		LogFormatter::ptr getFormatter() const { return _formatter; }
 		LogLevel::Level getLevel() const { return _level; }
 		void setLevel(LogLevel::Level val) { _level = val; }
+
 	protected:
-		LogLevel::Level _level = LogLevel::Level::DEBUG;
-		bool _hasFormatter = false;
-		mutable MutexType _mutex;
-		LogFormatter::ptr _formatter;
+		LogLevel::Level				 _level = LogLevel::Level::DEBUG;
+		bool						 _hasFormatter = false;
+		mutable MutexType			 _mutex;
+		LogFormatter::ptr			 _formatter;
 	};
 
 	// 日志定义类别  负责对外接口
@@ -152,25 +155,30 @@ namespace CommonModule {
 	};
 
 	// 输出到控制台的Appender
-	class StdoutLogAppender : public LogAppender {
-	public:
-		typedef std::shared_ptr<StdoutLogAppender> ptr;
-		void log(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event) override;
-		void toXMLString() override;
-	};
+// 	class StdoutLogAppender : public LogAppender {
+// 	public:
+// 		typedef std::shared_ptr<StdoutLogAppender> ptr;
+// 		void log(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event) override;
+// 		std::string toXMLString() override;
+// 	};
 
 	// 输出到文件的Appender  可能要在析构函数中关闭文件描述符，但是代码里好像没写
 	class FileLogAppender : public LogAppender {
 	public:
 		typedef std::shared_ptr<FileLogAppender> ptr;
-		FileLogAppender(const std::string& filename);
+		FileLogAppender(const std::string& filename, const std::string strAppenderName = "File");
+
+
 		void log(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event) override;
-		void toXMLString() override;
-		// 重新打开文件， 打开成功返回true
+		std::string toXMLString() override;
+		std::string getAppenderName() override { return _strAppenderName; };
+
 		bool reopen();
+
 	private:
-		std::string _filename;
-		std::ofstream _filestream;
-		uint64_t _last_time;
+		std::string				_filename;
+		std::ofstream			_filestream;
+		uint64_t				_last_time;
+		std::string				_strAppenderName;
 	};
 }

@@ -15,13 +15,14 @@ namespace CommonModule {
 		~XMLCreateManager() = default;
 
 	public:
-		void InitDeclaration(std::string str = "");
-		void InitDeclaration(XML::XMLDeclaration decl);
+		void InitDeclaration(const std::string& str = "");
+		void InitDeclaration(XML::XMLDeclaration* decl);
 
-		XML::XMLElement* GetElement(std::string strElementText);
-		void AddElementFirst(XML::XMLElement* parentElement, std::string strElementText);
-		void AddElementEnd(XML::XMLElement* parentElement, std::string strElementText);
+		XML::XMLElement* GetElement(const std::string& strElementText);
+		void AddElementFirst(XML::XMLElement* parentElement, std::string strElementText, std::string strContext);
+		void AddElementEnd(XML::XMLElement* parentElement, std::string strElementText, std::string strContext);
 
+		std::string ConvertXMLToString();
 	private:
 		XML::XMLDocument _doc;
 	};
