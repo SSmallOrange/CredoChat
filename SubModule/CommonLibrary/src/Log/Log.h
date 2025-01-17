@@ -8,6 +8,7 @@
 #include <vector>
 #include <map>
 
+#include "CommonModule.h"
 #include "Utils/Mutex.h"
 
 namespace CommonModule {
@@ -17,10 +18,10 @@ namespace CommonModule {
 	public:
 		enum Level { UNKNOW = 0, DEBUG = 1, INFO, WARN, ERROR, FATAL, MAX_LEVEL = 10000 };
 		static const char* ToString(LogLevel::Level level);
-		static LogLevel::Level FromString(const std::string& str);
+		static LogLevel::Level FromString( std::string& str);
 	};
 
-	class LogEvent {
+	class COMMONMODULE_API LogEvent {
 	public:
 		using ptr = std::shared_ptr<LogEvent>;
 
@@ -28,18 +29,18 @@ namespace CommonModule {
 			uint32_t thread_id, uint64_t time, const std::string& threadName);
 		~LogEvent() = default;
 	public:
-		const char* getFile() const { return _file; }
-		int32_t getLine() const { return _line; }
-		uint32_t getElapse() const { return _elapse; }
-		uint32_t getThreadId() const { return _threadId; }
-		uint64_t getTime() const { return _time; }
-		std::string getThreadName() const { return _thread_name; }
-		std::string getContent() const { return _ss.str(); }
-		std::shared_ptr<Logger> getLogger() const { return _logger; }
-		LogLevel::Level getLevel() const { return _level; }
+		const char* getFile()  { return _file; }
+		int32_t getLine()  { return _line; }
+		uint32_t getElapse()  { return _elapse; }
+		uint32_t getThreadId()  { return _threadId; }
+		uint64_t getTime()  { return _time; }
+		std::string getThreadName()  { return _thread_name; }
+		std::string getContent()  { return _ss.str(); }
+		std::shared_ptr<Logger> getLogger()  { return _logger; }
+		LogLevel::Level getLevel()  { return _level; }
 
-		void format(const char* fmt, ...);
-		void format(const char* fmt, va_list al);
+		void format( char* fmt, ...);
+		void format( char* fmt, va_list al);
 
 		std::stringstream& getSS() { return _ss; }
 	private:
@@ -56,7 +57,7 @@ namespace CommonModule {
 	};
 
 	// 日志输出用
-	class LogEventWarp {
+	class COMMONMODULE_API LogEventWarp {
 	public:
 		LogEventWarp(LogEvent::ptr event);
 		~LogEventWarp();
@@ -68,13 +69,13 @@ namespace CommonModule {
 	};
 
 	// 日志格式
-	class LogFormatter {
+	class COMMONMODULE_API LogFormatter {
 	public:
 		typedef std::shared_ptr<LogFormatter> ptr;
-		LogFormatter(const std::string& pattern) { _pattern = pattern; };
+		LogFormatter(const std::string& pattern);
 
 		// %t   %threadID %m%n
-		std::string format(const std::shared_ptr<Logger>& logger, LogLevel::Level level, LogEvent::ptr event);
+		std::string format( std::shared_ptr<Logger>& logger, LogLevel::Level level, LogEvent::ptr event);
 		std::ostream& format(std::ostream& ofs, std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event);
 	public:
 		class FormatItem {
@@ -85,8 +86,8 @@ namespace CommonModule {
 			virtual void format(std::ostream& os, std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event) = 0;
 		};
 		void Init();
-		bool isError() const { return _is_error; }
-		const std::string getPattern() const { return _pattern; }
+		bool isError()  { return _is_error; }
+		 std::string getPattern()  { return _pattern; }
 	private:
 		std::string _pattern;
 		std::vector<FormatItem::ptr> _items;
@@ -94,7 +95,7 @@ namespace CommonModule {
 	};
 
 	// 日志输出位置
-	class LogAppender {
+	class COMMONMODULE_API LogAppender {
 		friend class Logger;
 	public:
 		typedef std::shared_ptr<LogAppender> ptr;
@@ -107,8 +108,8 @@ namespace CommonModule {
 		virtual std::string getAppenderName() = 0;
 
 		void setFormatter(LogFormatter::ptr val);
-		LogFormatter::ptr getFormatter() const { return _formatter; }
-		LogLevel::Level getLevel() const { return _level; }
+		LogFormatter::ptr getFormatter()  { return _formatter; }
+		LogLevel::Level getLevel()  { return _level; }
 		void setLevel(LogLevel::Level val) { _level = val; }
 
 	protected:
@@ -119,13 +120,13 @@ namespace CommonModule {
 	};
 
 	// 日志定义类别  负责对外接口
-	class Logger : public std::enable_shared_from_this<Logger> {
+	class COMMONMODULE_API Logger : public std::enable_shared_from_this<Logger> {
 	public:
 		typedef std::shared_ptr<Logger> ptr;
 		typedef CASLock MutexType;
 		Logger(std::string name = "root");
 		// 日志输出接口
-		void log(LogLevel::Level level, const LogEvent::ptr event);
+		void log(LogLevel::Level level,  LogEvent::ptr event);
 		std::string toXMLString();
 
 		void debug(LogEvent::ptr event);
@@ -137,12 +138,13 @@ namespace CommonModule {
 		void addAppender(const LogAppender::ptr& appender);
 		void delAppender(const LogAppender::ptr& appender);
 		void clearAppenders();
-		[[nodiscard]] LogLevel::Level getLevel() const { return _level; }
+		[[nodiscard]] LogLevel::Level getLevel()  { return _level; }
 		void setLevel(LogLevel::Level val) { _level = val; }
+		void setLogger(Logger::ptr val) { _root = val; }
 
-		const std::string& getName() const { return _name; }
+		 std::string& getName()  { return _name; }
 		void setFormatter(LogFormatter::ptr val);
-		void setFormatter(const std::string& val);
+		void setFormatter( std::string& val);
 		LogFormatter::ptr getFormatter();
 
 	private:
@@ -163,10 +165,10 @@ namespace CommonModule {
 // 	};
 
 	// 输出到文件的Appender  可能要在析构函数中关闭文件描述符，但是代码里好像没写
-	class FileLogAppender : public LogAppender {
+	class COMMONMODULE_API FileLogAppender : public LogAppender {
 	public:
 		typedef std::shared_ptr<FileLogAppender> ptr;
-		FileLogAppender(const std::string& filename, const std::string strAppenderName = "File");
+		FileLogAppender( std::string& filename,  std::string strAppenderName = "File");
 
 
 		void log(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event) override;

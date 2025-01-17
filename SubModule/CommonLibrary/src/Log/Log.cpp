@@ -4,6 +4,7 @@
 
 #include <cstdarg>
 #include <ctime>
+#include <filesystem>
 #include <functional>
 #include <iostream>
 #include <algorithm>
@@ -11,7 +12,7 @@
 namespace XML = tinyxml2;
 
 namespace CommonModule {
-	const char* LogLevel::ToString(LogLevel::Level level) {
+	 const char* LogLevel::ToString(LogLevel::Level level) {
 		switch (level)
 		{
 #define XX(name) \
@@ -30,7 +31,7 @@ namespace CommonModule {
 		}
 	}
 
-	LogLevel::Level LogLevel::FromString(const std::string& str) {
+	LogLevel::Level LogLevel::FromString( std::string& str) {
 		std::transform(str.begin(), str.end(), str.begin(), ::tolower);
 #define XX(level, v) \
 	if (str == #v) { \
@@ -162,10 +163,10 @@ namespace CommonModule {
 
 	// ---------------- Logger -----------------------
 	Logger::Logger(std::string name) : _name(std::move(name)), _level(LogLevel::Level::DEBUG) {
-		_formatter.reset(new LogFormatter("%d%T%t%T%N%T%F%T[%p]%T[%c]%T%f:%l%T%m%n"));
+		_formatter.reset(new LogFormatter("%d%T%t%T%N%T%T[%p]%T[%c]%T%f:%l%T%m%n"));
 	}
 
-	void Logger::log(LogLevel::Level level, const LogEvent::ptr event) {
+	void Logger::log(LogLevel::Level level,  LogEvent::ptr event) {
 		if (level >= _level) {
 			auto self = shared_from_this();
 			MutexType::Lock lock(_mutex);
@@ -233,7 +234,7 @@ namespace CommonModule {
 		}
 	}
 
-	void Logger::setFormatter(const std::string& val) {
+	void Logger::setFormatter( std::string& val) {
 		LogFormatter::ptr new_val(new LogFormatter(val));
 		if (new_val->isError()) {
 			std::cout << "Logger setFormatter name = " << _name
@@ -278,7 +279,7 @@ namespace CommonModule {
 	}
 
 	// ---------------- FileLogAppender -----------------------
-	FileLogAppender::FileLogAppender(const std::string& filename, const std::string strAppenderName) 
+	FileLogAppender::FileLogAppender( std::string& filename,  std::string strAppenderName) 
 		: _filename(filename), _strAppenderName(strAppenderName) {
 		reopen(); 
 	}
@@ -303,7 +304,23 @@ namespace CommonModule {
 			_filestream.close();
 		}
 		// std::cout << _filename << std::endl;
-		_filestream.open(_filename);
+			// 获取文件路径中的目录部分
+		std::filesystem::path file_path(_filename);
+		std::filesystem::path dir = file_path.parent_path();
+
+		// 检查目录是否存在，如果不存在则创建目录
+		if (!std::filesystem::exists(dir)) {
+			std::cout << "Directory does not exist. Creating directory: " << dir << std::endl;
+			if (!std::filesystem::create_directories(dir)) {
+				std::cerr << "Failed to create directory: " << dir << std::endl;
+				return false;  // 创建目录失败
+			}
+		}
+
+		_filestream.open(_filename, std::ios::app);
+		if (!_filestream) {
+			std::cout << "error open file";
+		}
 		return !!_filestream;
 	}
 
@@ -324,6 +341,13 @@ namespace CommonModule {
 		std::stringstream ss;
 		ss << xmlCreateManager->ConvertXMLToString();
 		return ss.str();
+	}
+
+
+	// ---------------- FileLogAppender -----------------------
+
+	LogFormatter::LogFormatter(const std::string& pattern) : _pattern(pattern) {
+		Init();
 	}
 
 	void LogFormatter::Init() {
@@ -392,9 +416,9 @@ namespace CommonModule {
 		if (!nstr.empty()) {
 			vec.emplace_back(nstr, "", 0);
 		}
-		static std::map<std::string, std::function<FormatItem::ptr(const std::string& str)>> s_format_items = {
+		static std::map<std::string, std::function<FormatItem::ptr( std::string& str)>> s_format_items = {
 	#define XX(str, C) \
-	            {#str, [](const std::string& fmt) { return FormatItem::ptr(new C(fmt));}}
+	            {#str, []( std::string& fmt) { return FormatItem::ptr(new C(fmt));}}
 
 				XX(m, MessageFormatItem),    // 消息
 				XX(p, LevelFormatItem),      // 日志级别
@@ -428,7 +452,7 @@ namespace CommonModule {
 		}
 	}
 
-	std::string LogFormatter::format(const std::shared_ptr<Logger>& logger, LogLevel::Level level, LogEvent::ptr event) {
+	std::string LogFormatter::format( std::shared_ptr<Logger>& logger, LogLevel::Level level, LogEvent::ptr event) {
 		std::stringstream ss;
 		for (auto& i : _items) {
 			i->format(ss, logger, level, event);
@@ -455,14 +479,14 @@ namespace CommonModule {
 		_logger(logger),
 		_thread_name(thread_name) {}
 
-	void LogEvent::format(const char* fmt, ...) {
+	void LogEvent::format( char* fmt, ...) {
 		va_list al;  // 初始化一个能指向可变长参数列表的指针
 		va_start(al, fmt);  // fmt为最后一个指定参数，该宏将al指向可变长参数列表的开头
 		format(fmt, al);
 		va_end(al);  // 将al置空
 	}
 
-	void LogEvent::format(const char* fmt, va_list al) {
+	void LogEvent::format( char* fmt, va_list al) {
 
 		// 计算缓冲区的大小
 		va_list al_copy;

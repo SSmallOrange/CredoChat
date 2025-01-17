@@ -3,6 +3,7 @@
 // #include "LocalConfig/LocalCfg.h"
 
 #include "LocalConfig/LocalCfg.h"
+#include "Log/LogManager.h"
 #include "Utils/util.h"
 
 // #include <QFile>
@@ -18,8 +19,12 @@ int main(int argc, char* argv[])
 	// std::string test = "hello world!!"; // "D:\\Data\\Project\\CredoChat\\CredoChat\\bin\\Localcfg.xml"
 	if (config->OpenXMLDoc(configFilePath + "\\Localcfg.xml")) {
 		std::string str = CommonModule::LocalCfg::GetInstance()->ReadConfigValue<std::string>("IP", "ClientInfo", "Localcfg.xml");
-		std::string temp = str;
 	}
+
+	static CommonModule::Logger::ptr g_logger = LOG_NAME("root");
+
+	LOG_INFO(g_logger) << "Hello World";
+
 	system("pause");
 	return 0;
 	//     QApplication a(argc, argv);

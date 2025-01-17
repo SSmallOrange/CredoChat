@@ -9,7 +9,6 @@ namespace CredoTest {
 		// std::string test = "hello world!!"; // "D:\\Data\\Project\\CredoChat\\CredoChat\\bin\\Localcfg.xml"
 		if (config->OpenXMLDoc(configFilePath + "\\Localcfg.xml")) {
 			std::string str = CommonModule::LocalCfg::GetInstance()->ReadConfigValue<std::string>("IP", "ClientInfo", "Localcfg.xml");
-			std::string temp = str;
 		}
 		system("pause");
 		return;

@@ -12,4 +12,7 @@ namespace CommonModule {
 
 	// 获取配置文件路径
 	COMMONMODULE_API std::string CurrentConfigFilePath();
+
+	// 获取当前线程ID
+	COMMONMODULE_API int GetCurrentThreadId();
 }

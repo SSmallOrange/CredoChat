@@ -1,5 +1,6 @@
 #include "util.h"
 
+#include <thread>
 #include <iostream>
 #include <windows.h>
 #include <filesystem>
@@ -60,5 +61,12 @@ namespace CommonModule {
 			std::filesystem::path parentPath = curPath.parent_path();
 			return parentPath.string() + "LocalCfg.xml";
 		}
+	}
+
+	uint32_t GetCurrentThreadId() {
+		// 当前线程 ID
+		std::thread::id tid = std::this_thread::get_id();
+		size_t tid_hash = std::hash<std::thread::id>{}(tid);
+		return static_cast<uint32_t>(tid_hash);
 	}
 }

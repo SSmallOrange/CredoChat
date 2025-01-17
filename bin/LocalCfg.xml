@@ -4,4 +4,8 @@
 		<IP>127.0.0.1</IP>
 		<Port>8080</Port>
 	</ClientInfo>
+	<LogConfig>
+		<LogFileName>CredoChatLog.txt</LogFileName>
+		<LogFilePath>./bin/log</LogFilePath>
+	</LogConfig>
 </LocalConfig>
