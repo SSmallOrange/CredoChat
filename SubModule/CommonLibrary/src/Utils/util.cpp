@@ -1,6 +1,9 @@
 #include "util.h"
 
+#include <chrono>
 #include <thread>
+#include <iomanip>
+#include <sstream>
 #include <iostream>
 #include <windows.h>
 #include <filesystem>
@@ -63,10 +66,23 @@ namespace CommonModule {
 		}
 	}
 
+	// 获取当前ThreadID
 	uint32_t GetCurrentThreadId() {
 		// 当前线程 ID
 		std::thread::id tid = std::this_thread::get_id();
 		size_t tid_hash = std::hash<std::thread::id>{}(tid);
 		return static_cast<uint32_t>(tid_hash);
+	}
+
+	// 获取当前时间
+	std::string GetCurrentTimestamp(std::string strFormat) {
+		auto now = std::chrono::system_clock::now();
+		auto in_time_t = std::chrono::system_clock::to_time_t(now);
+
+		struct tm tm;
+		localtime_s(&tm, &in_time_t);
+		char buf[64];
+		strftime(buf, sizeof(buf), strFormat.c_str(), &tm);
+		return buf;
 	}
 }

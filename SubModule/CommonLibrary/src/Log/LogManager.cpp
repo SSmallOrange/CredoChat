@@ -1,4 +1,5 @@
 #include "LogManager.h"
+#include "Utils\util.h"
 #include "LocalConfig\LocalCfg.h"
 #include "LocalConfig\XMLManager.h"
 
@@ -9,7 +10,7 @@ namespace CommonModule {
 		std::string strLogFileName = CommonModule::LocalCfg::GetInstance()->ReadConfigValue<std::string>("LogFileName", "LogConfig", "Localcfg.xml");
 		std::string strLogFilePath = CommonModule::LocalCfg::GetInstance()->ReadConfigValue<std::string>("LogFilePath", "LogConfig", "Localcfg.xml");
 
-		std::string strLogFile = strLogFilePath + '/' + strLogFileName;
+		std::string strLogFile = strLogFilePath + '/' + strLogFileName + GetCurrentTimestamp() + ".log";
 
 		_root->addAppender(LogAppender::ptr(new FileLogAppender(strLogFile)));
 

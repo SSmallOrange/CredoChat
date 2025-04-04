@@ -1,6 +1,7 @@
 #include "Log/Log.h"
 #include "LocalConfig/LocalCfg.h"
 #include "LocalConfig/XMLManager.h"
+#include "Concurrent/ThreadPool.h"
 
 #include <cstdarg>
 #include <ctime>

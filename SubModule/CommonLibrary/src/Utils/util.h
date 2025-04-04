@@ -14,5 +14,8 @@ namespace CommonModule {
 	COMMONMODULE_API std::string CurrentConfigFilePath();
 
 	// 获取当前线程ID
-	COMMONMODULE_API int GetCurrentThreadId();
+	COMMONMODULE_API uint32_t GetCurrentThreadId();
+
+	// 获取当前时间 
+	COMMONMODULE_API std::string GetCurrentTimestamp(std::string strFormat = "%Y-%m-%d_%H-%M-%S");
 }

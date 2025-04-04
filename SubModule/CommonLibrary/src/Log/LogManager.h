@@ -1,5 +1,6 @@
 #pragma once
 #include "Log.h"
+#include "Utils/util.h"
 #include "utils/Mutex.h"
 #include "utils/singleton.h"
 #include "CommonModule.h"
