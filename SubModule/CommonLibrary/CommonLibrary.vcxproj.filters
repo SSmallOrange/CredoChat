@@ -31,6 +31,12 @@
     <Filter Include="源文件\Log">
       <UniqueIdentifier>{00d315c5-72ee-4dbe-ae3d-c0602cc51685}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\Concurrent">
+      <UniqueIdentifier>{a8eccf4c-b5ba-47fd-8a03-1824bd804e38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Net">
+      <UniqueIdentifier>{27fbe7e7-c564-45ef-8b76-85181935a84a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\CommonModule.h">
@@ -66,6 +72,24 @@
     <ClInclude Include="src\Log\LogManager.h">
       <Filter>头文件\Log</Filter>
     </ClInclude>
+    <ClInclude Include="src\Concurrent\ThreadPool.h">
+      <Filter>头文件\Concurrent</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Net\HttpClient.h">
+      <Filter>Net</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Net\AsyncNetPool.h">
+      <Filter>Net</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Net\HttpCore.h">
+      <Filter>Net</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Net\HttpSession.h">
+      <Filter>Net</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Net\BoostDefine.h">
+      <Filter>Net</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\LocalConfig\LocalCfg.cpp">
@@ -85,6 +109,18 @@
     </ClCompile>
     <ClCompile Include="src\Log\LogManager.cpp">
       <Filter>源文件\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Net\HttpClient.cpp">
+      <Filter>Net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Net\HttpCore.cpp">
+      <Filter>Net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Net\HttpSession.cpp">
+      <Filter>Net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Net\AsyncNetPool.cpp">
+      <Filter>Net</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -73,7 +73,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;src;generate\moc;generate\ui;C:\VulkanSDK\1.0.51.0\include;${QTDIR}\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;src;generate\moc;generate\ui;C:\VulkanSDK\1.0.51.0\include;$(ProjectDir)SubModule\CommonLibrary\src;$(ProjectDir)Depend;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -std:c++17 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>generate\objects\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -91,10 +91,11 @@
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <WarningLevel>Level3</WarningLevel>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Qt5Cored.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>${QTDIR}\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>CommonLibrary.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;$(ProjectDir)SubModule\CommonLibrary\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -136,7 +137,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;src;generate\moc;generate\ui;C:\VulkanSDK\1.0.51.0\include;$(ProjectDir)SubModule\CommonLibrary\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;src;generate\moc;generate\ui;C:\VulkanSDK\1.0.51.0\include;$(ProjectDir)SubModule\CommonLibrary\src;$(ProjectDir)Depend;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -std:c++17 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>generate\objects\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -152,6 +153,7 @@
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <WarningLevel>Level3</WarningLevel>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalDependencies>CommonLibrary.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -204,42 +206,44 @@ xcopy /s /y "$(ProjectDir)Config\*.xml" "$(ProjectDir)bin"</Command>
     <ClCompile Include="src\Login\logindialog.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\Login\registerdialog.cpp" />
-    <ClCompile Include="src\mainwindow.cpp" />
     <ClCompile Include="test\Test_Config.cpp" />
+    <ClCompile Include="test\Test_Reflection.cpp" />
+    <ClCompile Include="test\Test_ThreadPool.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Depend\iguana\common.hpp" />
+    <ClInclude Include="Depend\iguana\define.h" />
+    <ClInclude Include="Depend\iguana\dynamic.hpp" />
+    <ClInclude Include="Depend\iguana\error_code.h" />
+    <ClInclude Include="Depend\iguana\field_reflection.hpp" />
+    <ClInclude Include="Depend\iguana\iguana.hpp" />
+    <ClInclude Include="Depend\iguana\json_reader.hpp" />
+    <ClInclude Include="Depend\iguana\json_util.hpp" />
+    <ClInclude Include="Depend\iguana\json_writer.hpp" />
+    <ClInclude Include="Depend\iguana\pb_reader.hpp" />
+    <ClInclude Include="Depend\iguana\pb_util.hpp" />
+    <ClInclude Include="Depend\iguana\pb_writer.hpp" />
+    <ClInclude Include="Depend\iguana\prettify.hpp" />
+    <ClInclude Include="Depend\iguana\Reflection.h" />
+    <ClInclude Include="Depend\iguana\util.hpp" />
+    <ClInclude Include="Depend\iguana\value.hpp" />
+    <ClInclude Include="Depend\iguana\version.hpp" />
+    <ClInclude Include="Depend\iguana\xml_reader.hpp" />
+    <ClInclude Include="Depend\iguana\xml_util.hpp" />
+    <ClInclude Include="Depend\iguana\xml_writer.hpp" />
+    <ClInclude Include="Depend\iguana\yaml_reader.hpp" />
+    <ClInclude Include="Depend\iguana\yaml_util.hpp" />
+    <ClInclude Include="Depend\iguana\yaml_writer.hpp" />
     <ClInclude Include="src\Base\global.h" />
-    <QtMoc Include="src\mainwindow.h" />
     <QtMoc Include="src\Base\HttpServer\httpmanager.h" />
     <QtMoc Include="src\Login\logindialog.h" />
     <QtMoc Include="src\Login\registerdialog.h" />
     <ClInclude Include="src\Base\singleton.h" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="generate\moc\moc_predefs.h.cbt">
-      <FileType>Document</FileType>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\mkspecs\features\data\dummy.cpp;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">cl -Bx"$(QTDIR)\bin\qmake.exe" -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -O2 -MD -std:c++17 -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E $(QTDIR)\mkspecs\features\data\dummy.cpp 2&gt;NUL &gt;generate\moc\moc_predefs.h</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generate moc_predefs.h</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">generate\moc\moc_predefs.h;%(Outputs)</Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\mkspecs\features\data\dummy.cpp;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">cl -Bx"$(QTDIR)\bin\qmake.exe" -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -Zi -MDd -std:c++17 -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E $(QTDIR)\mkspecs\features\data\dummy.cpp 2&gt;NUL &gt;generate\moc\moc_predefs.h</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generate moc_predefs.h</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">generate\moc\moc_predefs.h;%(Outputs)</Outputs>
-    </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <QtUic Include="src\Login\logindialog.ui" />
-    <QtUic Include="src\Login\registerdialog.ui" />
-    <QtUic Include="src\mainwindow.ui" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="res\cat.png" />
     <QtRcc Include="rc.qrc" />
     <None Include="style\stylesheet.qss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="Config\Localcfg.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <Import Project="$(QtMsBuild)\qt.targets" Condition="Exists('$(QtMsBuild)\qt.targets')" />

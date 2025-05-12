@@ -6,15 +6,6 @@
       <Extensions>ui</Extensions>
       <ParseFiles>false</ParseFiles>
     </Filter>
-    <Filter Include="Form Files">
-      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
-      <Extensions>ui</Extensions>
-      <ParseFiles>false</ParseFiles>
-    </Filter>
-    <Filter Include="Generated Files">
-      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
-      <Extensions>cpp;c;cxx;moc;h;def;odl;idl;res;</Extensions>
-    </Filter>
     <Filter Include="Generated Files">
       <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;moc;h;def;odl;idl;res;</Extensions>
@@ -40,11 +31,6 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Distribution Files">
-      <UniqueIdentifier>{B83CAF91-C7BF-462F-B76C-EA11631F866C}</UniqueIdentifier>
-      <Extensions>*</Extensions>
-      <ParseFiles>false</ParseFiles>
     </Filter>
     <Filter Include="Distribution Files">
       <UniqueIdentifier>{B83CAF91-C7BF-462F-B76C-EA11631F866C}</UniqueIdentifier>
@@ -76,6 +62,12 @@
     <Filter Include="Test">
       <UniqueIdentifier>{f8e42a89-ea96-4fdf-ad16-5960043239df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Depend">
+      <UniqueIdentifier>{beb101f8-4b88-4aba-a0ef-c6d7b3685c73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Depend\Reflection">
+      <UniqueIdentifier>{49e42f7e-4c62-4da6-b1b2-016b1686a1a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -93,10 +85,13 @@
     <ClCompile Include="src\Login\registerdialog.cpp">
       <Filter>Source Files\Login</Filter>
     </ClCompile>
-    <ClCompile Include="src\mainwindow.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="test\Test_Config.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\Test_Reflection.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\Test_ThreadPool.cpp">
       <Filter>Test</Filter>
     </ClCompile>
   </ItemGroup>
@@ -107,22 +102,75 @@
     <ClInclude Include="src\Base\global.h">
       <Filter>Header Files\Base</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="generate\moc\moc_predefs.h.cbt">
-      <Filter>Generated Files</Filter>
-    </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <QtUic Include="src\Login\logindialog.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="src\Login\registerdialog.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="src\mainwindow.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
+    <ClInclude Include="Depend\iguana\common.hpp">
+      <Filter>Depend\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Depend\iguana\define.h">
+      <Filter>Depend\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Depend\iguana\dynamic.hpp">
+      <Filter>Depend\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Depend\iguana\error_code.h">
+      <Filter>Depend\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Depend\iguana\field_reflection.hpp">
+      <Filter>Depend\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Depend\iguana\iguana.hpp">
+      <Filter>Depend\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Depend\iguana\json_reader.hpp">
+      <Filter>Depend\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Depend\iguana\json_util.hpp">
+      <Filter>Depend\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Depend\iguana\json_writer.hpp">
+      <Filter>Depend\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Depend\iguana\pb_reader.hpp">
+      <Filter>Depend\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Depend\iguana\pb_util.hpp">
+      <Filter>Depend\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Depend\iguana\pb_writer.hpp">
+      <Filter>Depend\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Depend\iguana\prettify.hpp">
+      <Filter>Depend\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Depend\iguana\util.hpp">
+      <Filter>Depend\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Depend\iguana\value.hpp">
+      <Filter>Depend\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Depend\iguana\version.hpp">
+      <Filter>Depend\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Depend\iguana\xml_reader.hpp">
+      <Filter>Depend\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Depend\iguana\xml_util.hpp">
+      <Filter>Depend\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Depend\iguana\xml_writer.hpp">
+      <Filter>Depend\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Depend\iguana\yaml_reader.hpp">
+      <Filter>Depend\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Depend\iguana\yaml_util.hpp">
+      <Filter>Depend\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Depend\iguana\yaml_writer.hpp">
+      <Filter>Depend\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Depend\iguana\Reflection.h">
+      <Filter>Depend\Reflection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\cat.png">
@@ -145,13 +193,5 @@
     <QtMoc Include="src\Login\registerdialog.h">
       <Filter>Header Files\Login</Filter>
     </QtMoc>
-    <QtMoc Include="src\mainwindow.h">
-      <Filter>Generated Files</Filter>
-    </QtMoc>
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="Config\Localcfg.xml">
-      <Filter>Distribution Files</Filter>
-    </Xml>
   </ItemGroup>
 </Project>

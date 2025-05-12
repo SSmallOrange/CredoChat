@@ -5,7 +5,7 @@
 		<Port>8080</Port>
 	</ClientInfo>
 	<LogConfig>
-		<LogFileName>CredoChatLog</LogFileName>
+		<LogFileName>CredoChatLog.txt</LogFileName>
 		<LogFilePath>./bin/log</LogFilePath>
 	</LogConfig>
 </LocalConfig>
