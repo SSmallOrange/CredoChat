@@ -2,6 +2,7 @@
 
 #include "CommonModule.h"
 #include "Utils/singleton.h"
+#include "Utils/StaticInitializerBase.h"
 
 #include <any>
 #include <string>
@@ -19,8 +20,10 @@ namespace CommonModule {
 	//		std::cout << "|==========================>" << s << "\n";
 	//	}
 	//};
-	class COMMONMODULE_API LocalCfg : public Singleton<LocalCfg> {
-		typedef std::shared_ptr<tinyxml2::XMLDocument> XMLDocPtr;
+	class COMMONMODULE_API LocalCfg : public Singleton<LocalCfg>, public StaticInitializerBase {
+	public:
+		using ptr = std::shared_ptr<LocalCfg>;
+		using XMLDocPtr = std::shared_ptr<tinyxml2::XMLDocument>;
 	public:
 		~LocalCfg() = default;
 
@@ -29,6 +32,7 @@ namespace CommonModule {
 		LocalCfg();
 
 	public:
+		void init() override;
 		bool OpenXMLDoc(std::string strFilePath);
 
 	public:
@@ -50,6 +54,5 @@ namespace CommonModule {
 	extern template COMMONMODULE_API int LocalCfg::ReadConfigValue<int>(std::string, std::string, std::string);
 	extern template COMMONMODULE_API double LocalCfg::ReadConfigValue<double>(std::string, std::string, std::string);
 	extern template COMMONMODULE_API bool LocalCfg::ReadConfigValue<bool>(std::string, std::string, std::string);
-
 }
 

@@ -16,7 +16,11 @@ namespace CommonModule {
 
 	class LogLevel {
 	public:
+#ifdef _WIN32
+		enum Level { UNKNOW = 0, DEBUG = 1, INFO, WARN, ERROR_1, FATAL, MAX_LEVEL = 10000 };
+#elif __linux__
 		enum Level { UNKNOW = 0, DEBUG = 1, INFO, WARN, ERROR, FATAL, MAX_LEVEL = 10000 };
+#endif
 		static const char* ToString(LogLevel::Level level);
 		static LogLevel::Level FromString( std::string& str);
 	};

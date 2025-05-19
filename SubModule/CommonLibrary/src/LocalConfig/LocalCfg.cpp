@@ -12,6 +12,8 @@ namespace CommonModule {
 		XML::XMLDocument doc;
 	}
 
+	void LocalCfg::init() {}
+
 	bool isInteger(const std::string& str) {
 		std::regex integerRegex("^[+-]?\\d+$");
 		return std::regex_match(str, integerRegex);
@@ -174,4 +176,6 @@ namespace CommonModule {
 
 		return false;
 	}
+
+	REGISTER_STATIC_INITIALIZER_INSTANCE_SHARED_PTR(LocalCfg);
 }

@@ -24,7 +24,11 @@ namespace CommonModule {
 			XX(DEBUG);
 			XX(INFO);
 			XX(WARN);
+#ifdef _WIN32
+			XX(ERROR_1);
+#elif __linux__
 			XX(ERROR);
+#endif
 			XX(FATAL);
 #undef XX
         default:
@@ -41,7 +45,11 @@ namespace CommonModule {
 		XX(DEBUG, debug);
 		XX(INFO, info);
 		XX(WARN, watn);
+#ifdef _WIN32
+		XX(ERROR_1, error);
+#elif __linux__
 		XX(ERROR, error);
+#endif
 		XX(FATAL, fatal);
 #undef XX
 	}
@@ -195,7 +203,7 @@ namespace CommonModule {
 	}
 
 	void Logger::error(LogEvent::ptr event) {
-		log(LogLevel::ERROR, std::move(event));
+		log(LogLevel::ERROR_1, std::move(event));
 	}
 
 	void Logger::fatal(LogEvent::ptr event) {

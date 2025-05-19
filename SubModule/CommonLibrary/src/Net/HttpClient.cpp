@@ -1,15 +1,40 @@
 // http_client.cpp
 #include "HttpClient.h"
+#include "HttpCore.h"
+#include "Log/LogManager.h"
 
-HttpClient::HttpClient(std::size_t thread_count)
-	: thread_pool_(thread_count) {}
+namespace CommonModule {
+	namespace Net {
 
-std::shared_ptr<HttpCore> HttpClient::get_core(const std::string& user_id) {
-	std::lock_guard<std::mutex> lock(mutex_);
-	auto it = core_map_.find(user_id);
-	if (it != core_map_.end()) return it->second;
+		static CommonModule::Logger::ptr g_logger = LOG_ROOT();
 
-	auto core = std::make_shared<HttpCore>(thread_pool_.get_io_context());
-	core_map_.emplace(user_id, core);
-	return core;
+		HttpClient::HttpClient(std::size_t thread_count)
+			: _threadPool(thread_count) {}
+
+		HttpCore::ptr HttpClient::GetCore(const std::string& strSessionId) {
+			std::lock_guard<std::mutex> lock(_mutex);
+			auto it = _coreMap.find(strSessionId);
+			if (it != _coreMap.end() && it->second->SessionIsEffective()) {
+				return it->second;
+			}
+			return nullptr;
+		}
+
+		void HttpClient::Get_Async(const std::string& strUserId, HttpRequest req, ResponseHandler handleFunc) {
+			HttpCore::ptr core = GetCore(strUserId);
+			if (core == nullptr) {
+				LOG_DEBUG(g_logger) << "SessionId is vailed Or Session Not Set SessionInfo";
+				return;
+			}
+			core->MakeRequest(req, handleFunc);
+		}
+
+		void HttpClient::Post_Async(const std::string& strUserId, HttpRequest req, ResponseHandler handleFunc) {
+
+		}
+
+		void HttpClient::SetSessionInfo(const SessionInfo& sessionInfo) {
+			_coreMap[sessionInfo.strSessionId] = std::make_shared<HttpCore>(_threadPool.getIOContext(), sessionInfo);
+		}
+	}
 }

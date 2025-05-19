@@ -28,13 +28,15 @@
     <ClInclude Include="src\Log\LogDefine.h" />
     <ClInclude Include="src\Log\LogManager.h" />
     <ClInclude Include="src\Net\AsyncNetPool.h" />
-    <ClInclude Include="src\Net\BoostDefine.h" />
     <ClInclude Include="src\Net\HttpClient.h" />
     <ClInclude Include="src\Net\HttpCore.h" />
     <ClInclude Include="src\Net\HttpSession.h" />
+    <ClInclude Include="src\Net\NetDefine.h" />
+    <ClInclude Include="src\Net\NetPool.h" />
     <ClInclude Include="src\Utils\Mutex.h" />
     <ClInclude Include="src\Utils\NoCopyable.h" />
     <ClInclude Include="src\Utils\singleton.h" />
+    <ClInclude Include="src\Utils\StaticInitializerBase.h" />
     <ClInclude Include="src\Utils\util.h" />
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +51,7 @@
     <ClCompile Include="src\Net\HttpClient.cpp" />
     <ClCompile Include="src\Net\HttpCore.cpp" />
     <ClCompile Include="src\Net\HttpSession.cpp" />
+    <ClCompile Include="src\Net\NetPool.cpp" />
     <ClCompile Include="src\Utils\util.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -108,7 +111,7 @@
     <IntDir>$(ProjectDir)general</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LinkIncremental>true</LinkIncremental>
+    <LinkIncremental>false</LinkIncremental>
     <OutDir>$(ProjectDir)lib</OutDir>
     <IntDir>$(ProjectDir)general</IntDir>
   </PropertyGroup>
@@ -181,6 +184,8 @@ xcopy /s /y "$(ProjectDir)lib\*.dll" "$(SolutionDir)bin"</Command>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>src;$(ProjectDir)Depend\boost\include;$(ProjectDir)Depend\openssl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/Zi %(AdditionalOptions)</AdditionalOptions>
+      <ProgramDataBaseFileName>$(IntDir)$(ProjectName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -190,6 +195,9 @@ xcopy /s /y "$(ProjectDir)lib\*.dll" "$(SolutionDir)bin"</Command>
       <EnableUAC>false</EnableUAC>
       <AdditionalLibraryDirectories>Depend;$(ProjectDir)Depend\boost\lib;$(ProjectDir)Depend\openssl\lib\MDd</AdditionalLibraryDirectories>
       <AdditionalDependencies>libboost_chrono-vc143-mt-x64-1_87.lib;libboost_system-vc143-mt-x64-1_87.lib;libboost_thread-vc143-mt-x64-1_87.lib;libssl.lib;libcrypto.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>
+ %(AdditionalOptions)</AdditionalOptions>
+      <ProgramDatabaseFile>$(OutDir)$(ProjectName).pdb</ProgramDatabaseFile>
     </Link>
     <PreBuildEvent>
       <Command>xcopy /s /y "$(ProjectDir)src\*.h" "$(ProjectDir)include"</Command>

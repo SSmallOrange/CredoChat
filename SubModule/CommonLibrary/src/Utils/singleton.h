@@ -1,4 +1,5 @@
 #pragma once
+#include "CommonModule.h"
 
 #include <mutex>
 #include <memory>

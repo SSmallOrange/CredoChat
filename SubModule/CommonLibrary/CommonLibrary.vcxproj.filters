@@ -87,7 +87,13 @@
     <ClInclude Include="src\Net\HttpSession.h">
       <Filter>Net</Filter>
     </ClInclude>
-    <ClInclude Include="src\Net\BoostDefine.h">
+    <ClInclude Include="src\Utils\StaticInitializerBase.h">
+      <Filter>头文件\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Net\NetDefine.h">
+      <Filter>Net</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Net\NetPool.h">
       <Filter>Net</Filter>
     </ClInclude>
   </ItemGroup>
@@ -120,6 +126,9 @@
       <Filter>Net</Filter>
     </ClCompile>
     <ClCompile Include="src\Net\AsyncNetPool.cpp">
+      <Filter>Net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Net\NetPool.cpp">
       <Filter>Net</Filter>
     </ClCompile>
   </ItemGroup>
