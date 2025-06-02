@@ -180,4 +180,12 @@
       <Filter>Header Files\Login</Filter>
     </QtMoc>
   </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="src\Login\logindialog.ui">
+      <Filter>Header Files\Login</Filter>
+    </QtUic>
+    <QtUic Include="src\Login\registerdialog.ui">
+      <Filter>Header Files\Login</Filter>
+    </QtUic>
+  </ItemGroup>
 </Project>

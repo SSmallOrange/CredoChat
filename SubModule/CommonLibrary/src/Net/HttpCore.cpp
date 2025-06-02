@@ -29,10 +29,6 @@ namespace CommonModule {
 				boostReq.prepare_payload();
 			}
 
-			if (req.handleFunc == nullptr) {
-				req.handleFunc = std::move(handleFunc);
-			}
-
 			std::make_shared<HttpSession>(_io_context, strHost, strPort, boostReq, handleFunc)->run();
 		}
 

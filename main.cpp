@@ -20,9 +20,9 @@ int main() {
 	 	std::string str = CommonModule::LocalCfg::GetInstance()->ReadConfigValue<std::string>("IP", "ClientInfo", "Localcfg.xml");
 	}
 	g_logger = LOG_NAME("root");
-	// g_logger->setLevel(CommonModule::LogLevel::INFO);
-	CommonModule::Net::NetPool::GetInstance()->SetSessionInfo({ "CredoChat", "www.baidu.com", ""});
-	CommonModule::Net::HttpRequest req {"CredoChat", "1234556", "GET", "/", "1.1"};
+	
+	CommonModule::Net::NetPool::GetInstance()->SetSessionInfo({ "CredoChat", "www.baidu.com", "80"});
+	CommonModule::Net::HttpRequest req {"CredoChat", "1234556", "GET", "/", HTTP_1_1};
 
 	for (int i = 0; i < 10; i++) {
 		CommonModule::Net::NetPool::GetInstance()->Get_Async("CredoChat", req, [&](CommonModule::Net::HttpResponse response) {

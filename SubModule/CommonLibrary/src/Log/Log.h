@@ -174,10 +174,10 @@ namespace CommonModule {
 		typedef std::shared_ptr<FileLogAppender> ptr;
 		FileLogAppender( std::string& filename,  std::string strAppenderName = "File");
 
-
 		void log(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event) override;
 		std::string toXMLString() override;
 		std::string getAppenderName() override { return _strAppenderName; };
+		void SetLogFilePath(const std::string& strFilePath);
 
 		bool reopen();
 

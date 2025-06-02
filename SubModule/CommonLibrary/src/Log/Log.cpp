@@ -352,6 +352,11 @@ namespace CommonModule {
 		return ss.str();
 	}
 
+	void FileLogAppender::SetLogFilePath(const std::string& strFilePath) {
+		_filename = strFilePath;
+		reopen();
+	}
+
 
 	// ---------------- FileLogAppender -----------------------
 

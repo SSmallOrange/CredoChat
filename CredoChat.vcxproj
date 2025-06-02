@@ -255,6 +255,10 @@ xcopy /s /y "$(ProjectDir)Config\*.xml" "$(ProjectDir)bin"</Command>
     <QtRcc Include="rc.qrc" />
     <None Include="style\stylesheet.qss" />
   </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="src\Login\logindialog.ui" />
+    <QtUic Include="src\Login\registerdialog.ui" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <Import Project="$(QtMsBuild)\qt.targets" Condition="Exists('$(QtMsBuild)\qt.targets')" />
   <ImportGroup Label="ExtensionTargets" />

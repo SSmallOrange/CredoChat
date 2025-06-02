@@ -12,6 +12,10 @@ namespace CommonModule {
 		XML::XMLDocument doc;
 	}
 
+	bool LocalCfg::IsInit() {
+		return _xmlDocs.size() != 0;
+	}
+
 	void LocalCfg::init() {}
 
 	bool isInteger(const std::string& str) {

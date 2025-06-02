@@ -32,6 +32,12 @@
 #define LOG_ROOT() CommonModule::LoggerManager::GetInstance()->getRoot()
 #define LOG_NAME(name) CommonModule::LoggerManager::GetInstance()->getLogger(name)
 
+#define LOG_ROOT_DEBUG() LOG_LEVEL(LOG_ROOT(), CommonModule::LogLevel::Level::DEBUG)
+#define LOG_ROOT_INFO() LOG_LEVEL(LOG_ROOT(), CommonModule::LogLevel::Level::INFO)
+#define LOG_ROOT_WARN() LOG_LEVEL(LOG_ROOT(), CommonModule::LogLevel::Level::WARN)
+#define LOG_ROOT_ERROR() LOG_LEVEL(LOG_ROOT(), CommonModule::LogLevel::Level::ERROR)
+#define LOG_ROOT_FATAL() LOG_LEVEL(LOG_ROOT(), CommonModule::LogLevel::Level::FATAL)
+
 
 namespace CommonModule {
 	class COMMONMODULE_API LoggerManager : public Singleton<LoggerManager> {
@@ -47,7 +53,6 @@ namespace CommonModule {
 
 	public:
 		Logger::ptr getLogger(const std::string& name);
-		void init();
 		std::string toXMLString();
 		Logger::ptr getRoot() const { return _root; }
 	private:

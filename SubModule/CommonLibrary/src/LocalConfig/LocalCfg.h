@@ -32,6 +32,7 @@ namespace CommonModule {
 		LocalCfg();
 
 	public:
+		bool IsInit();
 		void init() override;
 		bool OpenXMLDoc(std::string strFilePath);
 
